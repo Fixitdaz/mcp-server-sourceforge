@@ -41,3 +41,18 @@ venv.bak/
 .coverage
 htmlcov/
 .pytest_cache/
+
+# Credentials & Secrets
+*.pem
+*.key
+*.pub
+*id_rsa*
+*id_ed25519*
+secrets/
+.secrets/
+*.secret
+*token*.json
+credentials.json
+sf_session.txt
+apply_sf_updates.py
+extract_sf_cookie.py

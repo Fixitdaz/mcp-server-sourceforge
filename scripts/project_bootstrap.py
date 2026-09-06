@@ -10,15 +10,18 @@ import sys
 import shutil
 import subprocess
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
 def main():
     print("[*] Initializing OpenViking environment for mcp-server-sourceforge...")
     ov_path = shutil.which("ov")
     if ov_path:
-        print(f"[✓] OpenViking CLI found at: {ov_path}")
+        print(f"[+] OpenViking CLI found at: {ov_path}")
         try:
             res = subprocess.run(["ov", "status"], capture_output=True, text=True, timeout=5)
             if res.returncode == 0:
-                print(f"[✓] OpenViking Status:\n{res.stdout.strip()}")
+                print(f"[+] OpenViking Status:\n{res.stdout.strip()}")
             else:
                 print("[!] OpenViking daemon is standby.")
         except Exception as e:
@@ -26,7 +29,7 @@ def main():
     else:
         print("[!] Note: 'ov' command not found in current PATH. OpenViking context ready.")
 
-    print("[✓] Project boundary safe. Rely on the database.")
+    print("[+] Project boundary safe. Rely on the database.")
     return 0
 
 if __name__ == "__main__":
